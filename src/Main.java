@@ -62,7 +62,7 @@ class FloydWarshall {
     public double[][] shortestPaths;
 
     public FloydWarshall(double[][] matrix) {
-        int V = matrix.length; // this only works for Directed Weighted Graph, because we have same amount of 'rows' and 'columns'(double array[][]), so when we get length of this array we get first index, that is same as second. In another cases this method will not be valid.
+        int V = matrix.length;
         this.shortestPaths = runAlgorithm(matrix, V);
     }
 
@@ -120,9 +120,15 @@ public class Main {
             double density = reader.nextDouble();
             randomGraph.generateRandomGraph(density);
             double[][] matrix = randomGraph.getMatrix();
-            for (int i = 0; i < matrix.length; i++) {
+            for (int i = 0; i < matrix.length; i++) { // виведення матриці графа в консоль
                 for (int j = 0; j < matrix[i].length; j++) {
-                    System.out.print(matrix[i][j] + " ");
+                    if (matrix[i][j] == Double.POSITIVE_INFINITY) {
+                        System.out.print("∞ ");
+                    }
+                    else {
+                        System.out.print(matrix[i][j] + " ");
+                    }
+
                 }
                 System.out.println();
             }
